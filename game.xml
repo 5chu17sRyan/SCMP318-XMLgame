@@ -1,121 +1,114 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <map>
   <room>
-    <name>Entrance</name>
-    <description>You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.</description>
-    <item>torch</item>
-    <item>key</item>
-    <trigger>
-      <type>permanent</type>
-      <command>n</command>
-      <condition>
-        <has>no</has>
-        <object>torch</object>
-        <owner>inventory</owner>
-      </condition>
-      <print>*stumble* need some light...</print>
-    </trigger>
+    <name>Room 1</name>
+    <description>Someone has scrawled "Ran out of arrows" on the south wall, and the floor is covered with bloodstains.</description>
+    <border>
+      <direction>west</direction>
+      <name>Room 2</name>
+      <command>w</command>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>Room 3</name>
+      <command>s</command>
+    </border>
+    <creature>Large Monstrous Centipede</creature>
+  </room>
+  <room>
+    <name>Room 2</name>
+    <description>The room has a high domed ceiling.</description>
+    <border>
+      <direction>east</direction>
+      <name>Room 1</name>
+      <command>e</command>
+    </border>
+    <item>Sundered Helm</item>
+  </room>
+  <room>
+    <name>Room 3</name>
+    <description>Someone has scrawled "Tane died here, didn't see it coming" on the south wall, and several pieces of rotten wood are scattered throughout the room.</description>
     <border>
       <direction>north</direction>
-      <name>MainCavern</name>
+      <name>Room 1</name>
       <command>n</command>
+    </border>
+    <border>
+      <direction>west</direction>
+      <name>Room 4</name>
+      <command>w</command>
+    </border>
+    <border>
+      <direction>east</direction>
+      <name>Room 5</name>
+      <command>e</command>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>Empty Corridor</name>
+      <command>s</command>
+    </border>
+    <creature>Small Magical Flying Squid</creature>
+    <item>Rotting Wood</item>
+  </room>
+  <room>
+    <name>Room 4</name>
+    <description>Burning torches in iron sconces line the north and south walls, and someone has scrawled "Lightning comes before thunder" on the south wall.</description>
+    <border>
+      <direction>east</direction>
+      <name>Room 3</name>
+      <command>e</command>
+    </border>
+    <creature>Fungal Beast</creature>
+    <item>Torch</item>
+  </room>
+  <room>
+    <name>Room 5</name>
+    <description>The floor is covered in broken pottery, puddles of water and dead insects.</description>
+    <border>
+      <direction>west</direction>
+      <name>Room 3</name>
+      <command>w</command>
     </border>
   </room>
   <room>
-    <name>MainCavern</name>
-    <description>A huge cavern surrounds you with a locked door to the north, a chest in the center, and a very dark corner...</description>
-    <container>chest</container>
-    <container>lock</container>
-    <creature>gnome</creature>
-    <border>
-      <direction>south</direction>
-      <name>Entrance</name>
-      <command>s</command>
-    </border>
+    <name>Empty Corridor</name>
+    <description>The corridor is empty and forks to the east and west</description>
     <border>
       <direction>north</direction>
-      <name>Staircase</name>
+      <name>Room 3</name>
       <command>n</command>
     </border>
-    <trigger>
-      <command>n</command>
-      <type>permanent</type>
-      <condition>
-        <object>lock</object>
-        <status>locked</status>
-      </condition>
-      <print>lock needs a key... not to mention you don't want to get too close to that side of the room... there's something in that corner...</print>
-    </trigger>
+    <border>
+      <direction>west</direction>
+      <name>Room 6</name>
+      <command>w</command>
+    </border>
+    <border>
+      <direction>east</direction>
+      <name>Exit</name>
+      <command>e</command>
+    </border>
+  </room>
+  <room>
+    <name>Room 6</name>
+    <description>The room is covered in moss, rat droppings and roots. You see triggered traps and skeletal remains, decayed and drained by time itself.</description>
+    <border>
+      <direction>east</direction>
+      <name>Empty Corridor</name>
+      <command>e</command>
+    </border>
+    <creature>Rat</creature>
+    <creature>Giant Fire Beetle</creature>
   </room>
   <room>
     <type>exit</type>
-    <name>Staircase</name>
-    <description>You found the exit!</description>
+    <name>Exit</name>
+    <description>An open door leads outside. Through the door you can see a short fallen tower in a shady mountain top</description>
     <border>
-      <name>MainCavern</name>
-      <direction>south</direction>
-      <command>s</command>
+      <direction>west</direction>
+      <name>Empty Corridor</name>
+      <command>w</command>
     </border>
   </room>
-  <item>
-    <name>torch</name>
-    <writing>next to a small button it reads "push for big flame"</writing>
-    <status>lit</status>
-    <turnon>
-      <print>the torch has erupted into a menacing inferno</print>
-      <action>Update torch to inferno</action>
-    </turnon>
-  </item>
-  <item>
-    <name>explosive</name>
-    <writing>turn on for boom :-). Warning!  Keep away from gnomes!</writing>
-    <status>idle</status>
-    <turnon>
-      <print>you hear ticking...</print>
-      <action>Update explosive to ticking</action>
-    </turnon>
-  </item>
-  <item>
-    <name>key</name>
-    <writing>Exit</writing>
-  </item>
-  <container>
-    <name>chest</name>
-    <item>explosive</item>
-  </container>
-  <container>
-    <name>lock</name>
-    <status>locked</status>
-    <accept>key</accept>
-    <trigger>
-      <condition>
-        <has>yes</has>
-        <object>key</object>
-        <owner>lock</owner>
-      </condition>
-      <print>The lock drops off and the door opens</print>
-      <action>Update lock to unlocked</action>
-    </trigger>
-  </container>
-  <creature>
-    <name>gnome</name>
-    <vulnerability>explosive</vulnerability>
-    <attack>
-      <condition>
-        <object>explosive</object>
-        <status>ticking</status>
-      </condition>
-      <print>A tiny squeek is uttered from the tiny and, although scary looking, quite innocent creature before it vanishes in a very loud explosion.  Tragic, but you find he was sitting on a key!</print>
-      <action>Add key to MainCavern</action>
-      <action>Delete gnome</action>
-    </attack>
-    <trigger>
-      <type>single</type>
-      <condition>
-        <object>torch</object>
-        <status>inferno</status>
-      </condition>
-      <print>You see a gnome in the dark corner... watching you with its super pointy hat...</print>
-    </trigger>
-  </creature>
 </map>
