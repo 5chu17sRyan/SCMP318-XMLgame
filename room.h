@@ -11,17 +11,19 @@ class Room
 { 
   public: 
   string name;
-  string description;
   string type;
-  vector<string> items;
   vector<Border> borders;
 
   Room();
   Room(XMLNode aNode);
   string checkBorder(string c);
-  void describe();
+  //void describe();
+
+  string getDescription();
+  vector<string> getItems();
       
   private:
-
+  string description;
+  vector<string> items;
 }; 
 #endif

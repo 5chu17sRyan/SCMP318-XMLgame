@@ -32,21 +32,11 @@ Room::Room(XMLNode aNode) {
   } while (!cNode.isEmpty());
 }
 
-void Room::describe() {
-  cout << description << endl;
-  int i=0;
-  cout << "The room contains:" << endl;
-  while (i<items.size()) {
-    cout << items[i] << endl;
-    i++;
-  }
-}
-
-string Room::checkBorder(string c) {
+string Room::checkBorder(string command) {
   int l = borders.size();
   string room="";
   int i=0;
-  while (i<l && borders[i].command!=c) {
+  while (i<l && borders[i].command!=command) {
     cout << "Border Check:" << i << borders[i].name << borders[i].direction << borders[i].command << endl; 
     i++;
   }
@@ -60,4 +50,14 @@ string Room::checkBorder(string c) {
   }
   return (room);
 
+}
+
+string Room::getDescription()
+{
+  return description;
+}
+
+vector<string> Room::getItems()
+{
+  return items;
 }
