@@ -14,6 +14,7 @@ class Border
   string name;
   string command;
 
+  Border();
   Border(XMLNode aNode);
       
   private:
