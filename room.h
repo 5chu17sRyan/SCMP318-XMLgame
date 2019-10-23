@@ -13,12 +13,14 @@ class Room
   string name;
   string type;
   vector<Border> borders;
-
+  
+  //constructors
   Room();
   Room(XMLNode aNode);
-  string checkBorder(string c);
-  //void describe();
 
+  string checkBorder(string c);
+  
+  //get functions
   string getDescription();
   vector<string> getItems();
       

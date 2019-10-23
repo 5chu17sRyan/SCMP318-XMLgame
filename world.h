@@ -11,13 +11,14 @@ using namespace std;
 class World 
 { 
   public: 
-  //map<string,Item> items;
   string location;
   
   World(XMLNode aNode);
+
   Room getCurrentRoom();
 
   private:
   map<string,Room> rooms;
+  //map<string,Item> items;
 }; 
 #endif

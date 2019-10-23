@@ -11,7 +11,7 @@ Room::Room(XMLNode aNode) {
   XMLNode cNode=aNode.getChildNode(i++);
   do {
     string tag=cNode.getName();
-    cout << "Room:" << tag << endl;
+    //cout << "Room:" << tag << endl;
     //cout << "tag:" << iName << " " << cNode.getText(0)<<  endl;
     if (tag == "name")
       name=cNode.getText(0);
@@ -21,7 +21,7 @@ Room::Room(XMLNode aNode) {
       type=cNode.getText(0);
     else if (tag == "item") {
       string item=cNode.getText(0);
-      cout << "Room item:" << item << endl;
+      //cout << "Room item:" << item << endl;
       items.push_back(item);
     } else if (tag == "border") {
       Border b = Border(cNode);
@@ -37,7 +37,7 @@ string Room::checkBorder(string command) {
   string room="";
   int i=0;
   while (i<l && borders[i].command!=command) {
-    cout << "Border Check:" << i << borders[i].name << borders[i].direction << borders[i].command << endl; 
+    //cout << "Border Check:" << i << borders[i].name << borders[i].direction << borders[i].command << endl; 
     i++;
   }
   if (i<l) {
@@ -49,7 +49,6 @@ string Room::checkBorder(string command) {
     cout << "Can't go that way!" << endl;
   }
   return (room);
-
 }
 
 string Room::getDescription()

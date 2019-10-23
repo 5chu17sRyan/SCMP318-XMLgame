@@ -16,8 +16,7 @@ class Border
 
   Border();
   Border(XMLNode aNode);
-      
   private:
-
+  
 }; 
 #endif

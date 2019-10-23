@@ -29,3 +29,4 @@ void UserInterface::o_describeRoom(Room room)
     i++;
   }
 }
+

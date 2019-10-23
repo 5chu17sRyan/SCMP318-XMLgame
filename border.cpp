@@ -15,7 +15,7 @@ Border::Border(XMLNode aNode) {
   XMLNode bNode=aNode.getChildNode(i++);
   do {
     string tag=bNode.getName();
-    cout << "Border:" << tag << ":" << bNode.getText(0) << endl;
+    //cout << "Border:" << tag << ":" << bNode.getText(0) << endl;
     if (tag == "name") {
       name=bNode.getText(0);
     } else if (tag == "direction") {
@@ -26,3 +26,4 @@ Border::Border(XMLNode aNode) {
     bNode=aNode.getChildNode(i++);
   } while (!bNode.isEmpty());
 }
+

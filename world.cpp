@@ -8,7 +8,7 @@ World::World(XMLNode aNode)
   location="";
   do {
     string tag=n.getName();
-    cout << "World:" << tag << endl;
+    //cout << "World:" << tag << endl;
     if (tag == "room") {
       Room r = Room(n);
       rooms[r.name]=r;
