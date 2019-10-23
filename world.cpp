@@ -1,8 +1,8 @@
 #include <iostream>
 #include "world.h"
 
-World::World(XMLNode aNode) {
-
+World::World(XMLNode aNode) 
+{
   int i=0;
   XMLNode n=aNode.getChildNode(i++);
   location="";
@@ -18,5 +18,10 @@ World::World(XMLNode aNode) {
 
     n=aNode.getChildNode(i++);
   } while (!n.isEmpty());
+}
 
+//Returns the room at the current location
+Room World::getCurrentRoom()
+{
+  return rooms[location];
 }
