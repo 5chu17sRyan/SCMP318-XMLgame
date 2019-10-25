@@ -20,16 +20,6 @@ command input by the user.*/
 command string will be executed. This may change values in
 world.*/
 
-void changeWorldLocation( World &world, string movementDirection );
-/*Precondition: world is a reference to a world objec 
-created at the beginning of the program. movementDirection
-is a command (either "n", "e", "s", "w") that indicates 
-the direction the player wants to try to move to.*/
-/*Postcondition: If there is another room in that direction,
-the location within world will be updated (player will 
-move to the room in that direction). If there is no room 
-in that direction notify the user.*/
-
 int main() 
 {
   //Creates parent node of all other tags
@@ -59,19 +49,6 @@ void processCommands( World &world, string command )
   
   if( movementCommand )
   {
-    changeWorldLocation( world, command );
-  }
-}
-
-/*Command functions like this might be moved into a command
-class or might be moved into existing classes. For 
-instance this might be moved into the world class.*/
-void changeWorldLocation( World &world, string movementDirection )
-{
-  Room currentRoom = world.getCurrentRoom();
-  string nextRoom = currentRoom.checkBorder(movementDirection);
-  if( nextRoom != "" )
-  {
-    world.location = nextRoom;
+    world.moveToNewRoom( command );
   }
 }

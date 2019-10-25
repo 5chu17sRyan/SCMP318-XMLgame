@@ -14,8 +14,9 @@ class World
   string location;
   
   World(XMLNode aNode);
-
+  
   Room getCurrentRoom();
+  void moveToNewRoom(string movementDirection);
 
   private:
   map<string,Room> rooms;
