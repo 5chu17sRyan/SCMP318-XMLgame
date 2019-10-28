@@ -111,4 +111,19 @@
       <command>w</command>
     </border>
   </room>
+  <item>
+    <name>Sundered Helm</name>
+    <description>It's a helm that's sundered</description>
+    <isOn>false</isOn>
+  </item>
+  <item>
+    <name>Torch</name>
+    <description>It's a torch</description>
+    <isOn>true</isOn>
+  </item>
+  <item>
+    <name>Rotting Wood</name>
+    <description>It's some rotting wood</description>
+    <isOn>false</isOn>
+  </item>
 </map>

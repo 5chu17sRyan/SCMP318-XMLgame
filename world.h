@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include "room.h"
+#include "item.h"
 
 using namespace std; 
 class World 
@@ -14,12 +15,16 @@ class World
   string location;
   
   World(XMLNode aNode);
-  
+
   Room getCurrentRoom();
   void moveToNewRoom(string movementDirection);
 
   private:
   map<string,Room> rooms;
-  //map<string,Item> items;
+  map<string,Item> items;
+
+  void setInitialLocation( Room room, string &location );
+  void addRoomToMap( Room room, map<string, Room>& rooms );
+  void addItemToMap(Item item, map<string, Item>& items);
 }; 
 #endif
