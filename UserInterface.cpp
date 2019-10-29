@@ -11,9 +11,14 @@ void UserInterface::o_readyForCommand()
   cout << ">";
 }
 
+//Precondition: command must be a string with allocated 
+//memory
+//Postcondition: A new value will be input into command 
+//from the console. Command will be in all UPPER CASE.
 void UserInterface::i_getCommand(string &command)
 {
   cin >> command;
+  transform(command.begin(), command.end(), command.begin(), ::tolower);
 }
 
 void UserInterface::o_describeRoom(Room room)
