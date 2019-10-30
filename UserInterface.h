@@ -14,7 +14,8 @@ class UserInterface
   //output commands
   void o_readyForCommand();
   void o_describeRoom(Room room);
-  void o_containerIsClosed();
+  //void o_containerIsClosed();
+  void o_gameOver();
   
   //input commands
   void i_getCommand(string &command);

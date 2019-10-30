@@ -11,6 +11,12 @@ void UserInterface::o_readyForCommand()
   cout << ">";
 }
 
+//Precondition: Player must have reached the exit room and typed the command "open exit"
+void UserInterface::o_gameOver()
+{
+  cout << "Game Over";
+}
+
 //Precondition: command must be a string with allocated 
 //memory
 //Postcondition: A new value will be input into command 
@@ -35,8 +41,9 @@ void UserInterface::o_describeRoom(Room room)
   }
 }
 
+/*
 void UserInterface::o_containerIsClosed()
 {
   cout << "This container is closed";
 }
-
+*/
