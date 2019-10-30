@@ -7,13 +7,13 @@
 #include <map>
 #include "border.h"
 #include "item.h"
+#include "container.h"
 
 using namespace std; 
 class Room 
 { 
   public: 
   string name;
-  string type;
   vector<Border> borders;
   
   //constructors
@@ -27,9 +27,12 @@ class Room
   string getDescription();
   map< string, Item > getItems();
   vector< string > getItemNames();
+  string getType();
 
   private:
+  string type;
   string description;
+  map< string, Container > containers;
   map< string, Item > items;
   vector< string > itemNames;
 }; 
