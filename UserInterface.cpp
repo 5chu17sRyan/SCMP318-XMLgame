@@ -27,7 +27,7 @@ void UserInterface::o_describeRoom(Room room)
   cout << description << endl;
   int i=0;
   cout << "The room contains:" << endl;
-  vector<string> items = room.getItems();
+  vector< string > items = room.getItemNames();
   while (i<items.size()) 
   {
     cout << items[i] << endl;

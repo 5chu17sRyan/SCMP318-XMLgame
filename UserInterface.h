@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include "room.h"
+#include "item.h"
 
 using namespace std;
 //The o_ prefix signifies output and the i_ prefix input
