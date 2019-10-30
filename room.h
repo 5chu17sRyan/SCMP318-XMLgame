@@ -3,8 +3,10 @@
 #define XML_USE_STL
 #include "xmlParser.h"
 #include <string>
-#include<vector>
+#include <vector>
+#include <map>
 #include "border.h"
+#include "item.h"
 
 using namespace std; 
 class Room 
@@ -19,13 +21,16 @@ class Room
   Room(XMLNode aNode);
 
   string checkBorder(string c);
+  void addItemToMap(Item item, map<string, Item>& items);
   
   //get functions
   string getDescription();
-  vector<string> getItems();
-      
+  map< string, Item > getItems();
+  vector< string > getItemNames();
+
   private:
   string description;
-  vector<string> items;
+  map< string, Item > items;
+  vector< string > itemNames;
 }; 
 #endif
