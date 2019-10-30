@@ -3,7 +3,6 @@
 #define XML_USE_STL
 
 #include "xmlParser.h"
-#include "UserInterface.h"
 #include <vector>
 #include <string>
 #include <map>
@@ -20,6 +19,8 @@ class Container
   void addItem(Item item);
   Item takeItem(string itemName);
   void open();
+
+  string getName();
   
   private:
   map<string, Item> itemMap;

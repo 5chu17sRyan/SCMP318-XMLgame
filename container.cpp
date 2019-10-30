@@ -32,6 +32,12 @@ Container::Container(XMLNode aNode)
   } while ( !bNode.isEmpty() );
 }
 
+
+string Container::getName()
+{
+  return name;
+}
+
 //Precondition: none
 //Postcondition: Container is set to be open
 void Container::open()
@@ -47,8 +53,7 @@ void Container::addItem(Item item)
     itemMap[ item.name ] = item;
   }
   else{
-    UserInterface ui = UserInterface();
-    ui.o_containerIsClosed();
+    cout << "This container is closed";
   }
 }
 
@@ -63,8 +68,7 @@ Item Container::takeItem(string itemName)
     return item;
   }
   else{
-    UserInterface ui = UserInterface();
-    ui.o_containerIsClosed();
+    cout << "This container is closed";
     Item item = Item();
     return item;
   }
