@@ -8,6 +8,7 @@
 #include "room.h"
 #include "item.h"
 
+
 using namespace std; 
 class World 
 { 
@@ -21,10 +22,8 @@ class World
 
   private:
   map<string,Room> rooms;
-  map<string,Item> items;
 
   void setInitialLocation( Room room, string &location );
   void addRoomToMap( Room room, map<string, Room>& rooms );
-  void addItemToMap(Item item, map<string, Item>& items);
 }; 
 #endif

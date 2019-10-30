@@ -18,11 +18,6 @@ World::World(XMLNode aNode)
       addRoomToMap( r, rooms );
       setInitialLocation( r, location );
     }
-    else if( tag == "item" )
-    {
-      Item i = Item( n );
-      addItemToMap( i, items );
-    }
 
     n = aNode.getChildNode( i++ );
   } while ( !n.isEmpty() );
@@ -47,13 +42,6 @@ void World::addRoomToMap(Room room, map<string, Room>& rooms)
   rooms[room.name] = room;  
 }
 
-/*Preconditon: item will be an existing item object*/
-/*Postconditon: The item will be added into a map which 
-maps from item name to the relevant item object*/
-void World::addItemToMap(Item item, map<string, Item>& items)
-{
-  items[item.name] = item;
-}
 
 //Returns the room at the current location
 Room World::getCurrentRoom()
