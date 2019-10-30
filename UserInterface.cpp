@@ -35,3 +35,8 @@ void UserInterface::o_describeRoom(Room room)
   }
 }
 
+void UserInterface::o_containerIsClosed()
+{
+  cout << "This container is closed";
+}
+
