@@ -33,3 +33,18 @@ Item::Item(XMLNode aNode)
     cNode = aNode.getChildNode( i++ );
   } while( !cNode.isEmpty() );
 }
+
+//Precondition: No preconditions
+//Postcondition: The description of the item is printed 
+//to the user.
+void Item::printDescription()
+{
+  cout << description;
+}
+
+//Preconditions: No preconditions
+//Postcondition: The item is turned on.
+void Item::turnOn()
+{
+  isOn = true;
+}

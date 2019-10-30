@@ -1,35 +1,24 @@
-#include <iostream>
-#include "item.h"
+#ifndef ITEM_H
+#define ITEM_H
+#define XML_USE_STL
+#include "xmlParser.h"
+#include <string>
 
-//default constructor: name+description are empty isOn=f
-Item::Item()
+using namespace std;
+class Item
 {
-  name = "";
-  description = "";
-  isOn = false;
-}
+  public:
+  Item();
+  Item(XMLNode aNode);
+  
+  string name;
 
-//Constructor gets object data from XML node 
-Item::Item(XMLNode aNode)
-{
-  int i = 0;
-  XMLNode cNode = aNode.getChildNode( i++ );
+  void printDescription();
+  void turnOn();
 
-  do {
-    string tag = cNode.getName();
-    if( tag == "name" )
-    {
-      name = cNode.getText( 0 );
-    }
-    else if( tag == "description" )
-    {
-      description = cNode.getText( 0 );
-    }
-    else if( tag == "isOn" )
-    {
-      isOn = cNode.getText( 0 );
-    }
+  private:
+  string description;
+  bool isOn;
+};
 
-    cNode = aNode.getChildNode( i++ );
-  } while( !cNode.isEmpty() );
-}
+#endif
