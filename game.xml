@@ -23,7 +23,11 @@
       <name>Room 1</name>
       <command>e</command>
     </border>
-    <item>Sundered Helm</item>
+    <item>
+      <name>Sundered Helm</name>
+      <description>It's a helm that's sundered</description>
+      <isOn>false</isOn>
+    </item>
   </room>
   <room>
     <name>Room 3</name>
@@ -49,7 +53,11 @@
       <command>s</command>
     </border>
     <creature>Small Magical Flying Squid</creature>
-    <item>Rotting Wood</item>
+    <item>
+      <name>Rotting Wood</name>
+      <description>It's some rotting wood</description>
+      <isOn>false</isOn>
+    </item>
   </room>
   <room>
     <name>Room 4</name>
@@ -60,7 +68,11 @@
       <command>e</command>
     </border>
     <creature>Fungal Beast</creature>
-    <item>Torch</item>
+    <item>
+      <name>Torch</name>
+      <description>It's a torch</description>
+      <isOn>true</isOn>
+    </item>
   </room>
   <room>
     <name>Room 5</name>
@@ -111,19 +123,4 @@
       <command>w</command>
     </border>
   </room>
-  <item>
-    <name>Sundered Helm</name>
-    <description>It's a helm that's sundered</description>
-    <isOn>false</isOn>
-  </item>
-  <item>
-    <name>Torch</name>
-    <description>It's a torch</description>
-    <isOn>true</isOn>
-  </item>
-  <item>
-    <name>Rotting Wood</name>
-    <description>It's some rotting wood</description>
-    <isOn>false</isOn>
-  </item>
 </map>
