@@ -1,10 +1,17 @@
+//File Name: container.cpp
+//Author: Ryan Schultz
+//Email Address: schultz4@kenyon.edu
+//Assignment Number: 2
+//Description: Class that represents a container that can contain items
+//Last Changed: October 31, 2019
+
 #include <iostream>
 #include "container.h"
 
 //Default constructor.
 Container::Container()
 {
-  name = "";
+  name = "inventory";
   isOpen = true;
 }
 
@@ -25,17 +32,12 @@ Container::Container(XMLNode aNode)
       static Item item = Item( bNode );
       string itemName = item.name;
       itemMap[ itemName ] = item; 
+      itemNames.push_back( itemName );
     }
 
     bNode = aNode.getChildNode( i++ );
 
   } while ( !bNode.isEmpty() );
-}
-
-
-string Container::getName()
-{
-  return name;
 }
 
 //Precondition: none
@@ -72,4 +74,16 @@ Item Container::takeItem(string itemName)
     Item item = Item();
     return item;
   }
+}
+
+//accessor function for vector<string> itemNames
+vector< string > Container::getItemNames()
+{
+  return itemNames;
+}
+
+//accessor function for string name
+string Container::getName()
+{
+  return name;
 }

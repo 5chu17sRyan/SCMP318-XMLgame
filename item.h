@@ -13,7 +13,7 @@ class Item
   
   string name;
 
-  void printDescription();
+  string getDescription();
   void turnOn();
 
   private:

@@ -13,13 +13,17 @@ class UserInterface
   
   //output commands
   void o_readyForCommand();
-  void o_describeRoom(Room room);
-  //void o_containerIsClosed();
+  void o_describeRoom( string roomDescription, vector< string > itemNames );
+  void o_containerContains( string containerName, vector< string > itemNames );
+  void o_describe( string description );
+  void o_containerIsClosed();
   void o_gameOver();
-  
+  void o_containerOpened();
+
   //input commands
   void i_getCommand(string &command);
   
   private:
-
+  void o_roomContains();
+  void o_listItems( vector< string > itemNames );
 };

@@ -1,9 +1,17 @@
+//File Name: world.cpp
+//Author: Ryan Schultz
+//Email Address: schultz4@kenyon.edu
+//Assignment Number: 2
+//Description: Class that represents the entire world/dungeon.
+//Last Changed: October 31, 2019
+
 #include <iostream>
 #include "world.h"
 #include <string>
 #include <vector>
 #include <map>
 
+//Constructor for world using an XMLNode
 World::World(XMLNode aNode) 
 {
   int i = 0;

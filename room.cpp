@@ -1,3 +1,10 @@
+//File Name: room.cpp
+//Author: Ryan Schultz
+//Email Address: schultz4@kenyon.edu
+//Assignment Number: 2
+//Description: Class to represent a room in the world/dungeon
+//Last Changed: October 31, 2019
+
 #include <iostream>
 #include "room.h"
 
@@ -55,12 +62,16 @@ string Room::getType()
   return type;
 }
 
+//Precondition: command is a string (n, s, e, w) that 
+//indicates the direction to check for a border.
+//Postcondition: If there is a room in the direction of the 
+//command, the name of that room is returned. Otherwise, an 
+//empty string is returned.
 string Room::checkBorder(string command) {
   int l = borders.size();
   string room="";
   int i=0;
   while (i<l && borders[i].command!=command) {
-    //cout << "Border Check:" << i << borders[i].name << borders[i].direction << borders[i].command << endl; 
     i++;
   }
   if (i<l) {
@@ -74,16 +85,19 @@ string Room::checkBorder(string command) {
   return (room);
 }
 
+//accessor function for string description
 string Room::getDescription()
 {
   return description;
 }
 
+//accessor function for map<string,Item> items
 map< string, Item > Room::getItems()
 {
   return items;
 }
 
+//accessor function for vector<string> itemNames
 vector< string > Room::getItemNames()
 {
   return itemNames;

@@ -21,10 +21,12 @@ class Container
   void open();
 
   string getName();
-  
-  private:
   map<string, Item> itemMap;
+  vector< string > getItemNames();
+
+  private:
   bool isOpen;
   string name;
+  vector< string > itemNames;
 };
 #endif

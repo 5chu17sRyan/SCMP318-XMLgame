@@ -3,7 +3,7 @@
 #define XML_USE_STL
 #include "xmlParser.h"
 #include <string>
-#include<vector>
+#include <vector>
 #include "border.h"
 
 using namespace std; 

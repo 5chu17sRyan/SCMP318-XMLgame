@@ -29,10 +29,10 @@ class Room
   vector< string > getItemNames();
   string getType();
 
+  map< string, Container > containers;
   private:
   string type;
   string description;
-  map< string, Container > containers;
   map< string, Item > items;
   vector< string > itemNames;
 }; 

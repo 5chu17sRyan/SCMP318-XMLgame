@@ -1,3 +1,10 @@
+//File Name: item.cpp
+//Author: Ryan Schultz
+//Email Address: schultz4@kenyon.edu
+//Assignment Number: 2
+//Description: Class to represent an item.
+//Last Changed: October 31, 2019
+
 #include <iostream>
 #include "item.h"
 
@@ -37,9 +44,9 @@ Item::Item(XMLNode aNode)
 //Precondition: No preconditions
 //Postcondition: The description of the item is printed 
 //to the user.
-void Item::printDescription()
+string Item::getDescription()
 {
-  cout << description;
+  return description;
 }
 
 //Preconditions: No preconditions

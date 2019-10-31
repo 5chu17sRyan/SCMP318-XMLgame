@@ -6,7 +6,6 @@
 #include <vector>
 #include <map>
 #include "room.h"
-#include "item.h"
 
 
 using namespace std; 
