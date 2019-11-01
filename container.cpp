@@ -3,7 +3,7 @@
 //Email Address: schultz4@kenyon.edu
 //Assignment Number: 2
 //Description: Class that represents a container that can contain items
-//Last Changed: October 31, 2019
+//Last Changed: November 1, 2019
 
 #include <iostream>
 #include "container.h"
@@ -25,16 +25,22 @@ Container::Container(XMLNode aNode)
   string tag = "";
   do 
   {
+    tag = bNode.getName();
+    cout << "Container Tag: " << tag <<  endl;
     if ( tag == "name" ) {
       name = bNode.getText( 0 );
+      //cout << "Container Name: " << name << endl;
     } 
     else if ( tag == "item" ) {
-      static Item item = Item( bNode );
+      Item item = Item( bNode );
       string itemName = item.name;
+      //cout << "Item name: " << itemName;
+      //cout << endl;
       itemMap[ itemName ] = item; 
       itemNames.push_back( itemName );
+      //cout << "First item in container: " << itemNames.at(0);
     }
-
+    //cout << "Container Name: " << name << endl;
     bNode = aNode.getChildNode( i++ );
 
   } while ( !bNode.isEmpty() );
@@ -64,16 +70,9 @@ void Container::addItem(Item item)
 //Postconditions: item is removed from the container //and returned to the program 
 Item Container::takeItem(string itemName)
 {
-  if( isOpen ){
-    Item item = itemMap.at( itemName );
-    itemMap.erase( itemName );
-    return item;
-  }
-  else{
-    cout << "This container is closed";
-    Item item = Item();
-    return item;
-  }
+  Item item = itemMap.at( itemName );
+  itemMap.erase( itemName );
+  return item;
 }
 
 //accessor function for vector<string> itemNames
@@ -85,5 +84,18 @@ vector< string > Container::getItemNames()
 //accessor function for string name
 string Container::getName()
 {
+  //cout << "Container Name: " << name << endl;
   return name;
+}
+
+//accessor function for bool isOpen
+bool Container::getIsOpen()
+{
+  return isOpen;
+}
+
+//accessor function for map<string, Item> itemMap
+map<string, Item> Container::getItemMap()
+{
+  return itemMap;
 }

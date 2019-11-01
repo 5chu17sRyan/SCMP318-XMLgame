@@ -3,7 +3,7 @@
 //Email Address: schultz4@kenyon.edu
 //Assignment Number: 2
 //Description: Program to play a simple text adventure game
-//Last Changed: October 31, 2019
+//Last Changed: November 1, 2019
 
 #include <iostream>
 #define XML_USE_STL
@@ -52,12 +52,11 @@ int main()
   World world = World( aNode );
   
   string command = "";
+  //Describes current room
+  Room currentRoom = world.getCurrentRoom();
+  UI.o_describeRoom( currentRoom.getDescription(), currentRoom.getItemNames());
   while (1) 
   {
-    //Describes current room
-    Room currentRoom = world.getCurrentRoom();
-    UI.o_describeRoom( currentRoom.getDescription(), currentRoom.getItemNames());
-
     //Gets and executes command from user.
     UI.o_readyForCommand();
     UI.i_getCommand( command );
@@ -90,46 +89,167 @@ void processCommands( World& world, string command )
   bool isTurnonCommand = verb == "turn";
   bool isAttackCommand = verb == "attack";
   
-  
+  //Move Rooms
   if( isMovementCommand )
   {
     world.moveToNewRoom( command );
+    Room currentRoom = world.getCurrentRoom();
+    UI.o_describeRoom( currentRoom.getDescription(), currentRoom.getItemNames());
   }
+
+  //Check Inventory
   if( isInventoryCommand )
   {
     UI.o_containerContains( Inventory.getName(), Inventory.getItemNames() );
   }
+
+  //Open Container
   if( isOpenCommand )
   {
     Room currentRoom = world.getCurrentRoom();
-    Container container = currentRoom.containers[object1];
+    map<string, Container> roomContainers = currentRoom.getContainers();
+    Container container = roomContainers.at( object1 );
+
     container.open();
+    //cout << container.getIsOpen() << endl;
+
     UI.o_containerOpened();
     UI.o_containerContains( container.getName(), container.getItemNames() );
   }
   
-  //Item in inventory commands
+  //Read Item
   if( isReadCommand )
   {
-    Item item = Inventory.itemMap.at(object1);
-    UI.o_describe( item.getDescription() );
+    map< string, Item > inventoryItems = Inventory.getItemMap();
+
+    //If the object exists in the inventory
+    if( inventoryItems.count( object1 ) > 0 ){
+      Item item = inventoryItems.at( object1 );
+
+      UI.o_describe( item.getDescription() );
+    }
+    else{
+      UI.o_noItemFound();
+    }
   }
+
+  //Turn On Item
   if( isTurnonCommand )
   {
     string actualObject = preposition;
-    Item item = Inventory.itemMap.at(actualObject);
-    item.turnOn();
+    map< string, Item > inventoryItems = Inventory.getItemMap();
+    //If object exists in inventory
+    if( inventoryItems.count( object1 ) > 0 ){
+      Item item = inventoryItems.at( actualObject );
+
+      item.turnOn();
+    }
+    else{
+      UI.o_noItemFound();
+    }
+  
   }
+
+  //Drop Item on the Floor
   if( isDropCommand )
   {
-    Item item = Inventory.takeItem(object1);
+    Room currentRoom = world.getCurrentRoom();
+    map< string, Item > inventoryItems = Inventory.getItemMap();
+    //If object exists in inventory
+    if( inventoryItems.count( object1 ) > 0 ){
+      Item droppedItem = Inventory.takeItem( object1 );
+      currentRoom.addItemToRoom( droppedItem );
+    }
+    else{
+      UI.o_noItemFound();
+    }
   }
 
+  //Put Item in Container
+  if( isPutCommand )
+  {
+    Room currentRoom = world.getCurrentRoom();
+    map<string, Container> roomContainers = currentRoom.getContainers();
+    Container container = roomContainers[ object2 ];
+    
+    //If container is open
+    if( container.getIsOpen() )
+    {
+      map< string, Item > inventoryItems = Inventory.getItemMap();
+      //If object exists in inventory
+      if( inventoryItems.count( object1 ) > 0 )
+      {
+        Item item = Inventory.takeItem( object1 );
+        container.addItem( item );
+      }
+      else
+      {
+        UI.o_noItemFound();
+      }
+    }
+    else
+    {
+      UI.o_containerIsClosed();
+    }
+  }
 
+  //Attack Creature with item
+  if( isAttackCommand )
+  {
+    UI.o_creaturedKilled();
+  }
+
+  //Take Item
+  if( isTakeCommand )
+  {
+    bool foundItem = false;
+    Room currentRoom = world.getCurrentRoom();
+    map< string, Item > roomItems = currentRoom.getItems();
+    //If the object is in the room
+    if( roomItems.count( object1 ) > 0 )
+    {
+      foundItem = true;
+      Item item = currentRoom.takeItem( object1 );
+      Inventory.addItem( item );
+    }
+    else
+    {
+      //Check all containers in the room
+      vector<string> containers = currentRoom.getContainerNames();
+      for( int i = 0; i < containers.size(); i++)
+      {
+        map<string, Container> roomContainers = currentRoom.getContainers();
+        string containerName = containers.at(i);
+        
+        Container container = roomContainers.at(containerName);
+        map<string, Item> containerItems = container.getItemMap();
+        //If object is in the container
+        if( containerItems.count( object1 ) > 0 )
+        {
+          foundItem = true;
+          Item item = container.takeItem( object1 );
+          Inventory.addItem( item );
+        }
+      }
+    }
+
+    if( !foundItem )
+    {
+      UI.o_noItemFound();
+    }
+  }
+
+  //Exit The Dungeon
   if( isExitCommand )
   {
-    UI.o_gameOver();
-    exit(0);
+    Room currentRoom = world.getCurrentRoom();
+    string isExit = currentRoom.getType();
+    if( isExit == "exit" )
+    {
+      UI.o_gameOver();
+      exit(0);
+    }
+  
   }
 }
 

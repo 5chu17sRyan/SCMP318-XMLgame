@@ -19,6 +19,9 @@ class UserInterface
   void o_containerIsClosed();
   void o_gameOver();
   void o_containerOpened();
+  void o_noItemFound();
+  void o_unableToLeave();
+  void o_creaturedKilled();
 
   //input commands
   void i_getCommand(string &command);

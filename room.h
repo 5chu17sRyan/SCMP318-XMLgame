@@ -21,19 +21,23 @@ class Room
   Room(XMLNode aNode);
 
   string checkBorder(string c);
-  void addItemToMap(Item item, map<string, Item>& items);
+  void addItemToRoom( Item item );
+  Item takeItem( string itemName );
   
   //get functions
   string getDescription();
-  map< string, Item > getItems();
-  vector< string > getItemNames();
+  map<string, Item> getItems();
+  vector<string> getItemNames();
+  map<string, Container> getContainers();
+  vector<string> getContainerNames();
   string getType();
 
-  map< string, Container > containers;
   private:
   string type;
   string description;
   map< string, Item > items;
-  vector< string > itemNames;
+  vector< string > itemNames; 
+  vector< string > containerNames; 
+  map< string, Container > containers;
 }; 
 #endif

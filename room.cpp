@@ -3,7 +3,7 @@
 //Email Address: schultz4@kenyon.edu
 //Assignment Number: 2
 //Description: Class to represent a room in the world/dungeon
-//Last Changed: October 31, 2019
+//Last Changed: November 1, 2019
 
 #include <iostream>
 #include "room.h"
@@ -31,7 +31,7 @@ Room::Room(XMLNode aNode) {
       type = cNode.getText( 0 );
     else if ( tag == "item" ) {
       Item i = Item( cNode );
-      addItemToMap( i, items );
+      addItemToRoom( i );
       string itemName = i.name;
       itemNames.push_back( itemName );
     } else if ( tag == "border" ) {
@@ -39,7 +39,8 @@ Room::Room(XMLNode aNode) {
       borders.push_back( b );
     } else if ( tag == "container" ){
       Container c = Container( cNode );
-      containers[c.getName()] = c;
+      containers[ c.getName() ] = c;
+      containerNames.push_back( c.getName() );
     }
 
     cNode=aNode.getChildNode(i++);
@@ -50,9 +51,9 @@ Room::Room(XMLNode aNode) {
 /*Preconditon: item will be an existing item object*/
 /*Postconditon: The item will be added into a map which
 maps from item name to the relevant item object*/
-void Room::addItemToMap(Item item, map<string, Item>& items)
+void Room::addItemToRoom(Item item)
 {
- items[item.name] = item;
+  items[item.name] = item;
 }
 
 //Precondition: Room must have a type even if only empty
@@ -85,6 +86,17 @@ string Room::checkBorder(string command) {
   return (room);
 }
 
+//Preconditions: itemName corresponds to a name of an 
+//item in the room
+//Postconditions: item is removed from the room and 
+//returned to the program 
+Item Room::takeItem(string itemName)
+{
+  Item item = items.at( itemName );
+  items.erase( itemName );
+  return item;
+}
+
 //accessor function for string description
 string Room::getDescription()
 {
@@ -101,4 +113,16 @@ map< string, Item > Room::getItems()
 vector< string > Room::getItemNames()
 {
   return itemNames;
+}
+
+//accessor function for vector<string> containerNames
+vector<string> Room::getContainerNames()
+{
+  return containerNames;
+}
+
+//accessor function fro map<string, Containers> containers;
+map<string, Container> Room::getContainers()
+{
+  return containers;
 }

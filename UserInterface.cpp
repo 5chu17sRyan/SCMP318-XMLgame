@@ -3,7 +3,7 @@
 //Email Address: schultz4@kenyon.edu
 //Assignment Number: 2
 //Description: Class to manage input and output between user and console
-//Last Changed: October 31, 2019
+//Last Changed: November 1, 2019
 
 #include "UserInterface.h"
 
@@ -19,7 +19,7 @@ UserInterface::UserInterface()
 //indicating that the program is ready for another command
 void UserInterface::o_readyForCommand()
 {
-  cout << ">";
+  cout << "> ";
 }
 
 //Precondition: Player must have reached the exit room 
@@ -36,7 +36,7 @@ void UserInterface::o_gameOver()
 //printed to the console
 void UserInterface::o_containerOpened()
 {
-  cout << "The container was opened";
+  cout << "The container was opened" << endl;;
 }
 
 //Precondition: command must be a string with allocated 
@@ -65,6 +65,7 @@ void UserInterface::o_describeRoom( string roomDescription, vector< string > ite
 void UserInterface::o_describe( string description )
 {
   cout << description;
+  cout << endl;
 }
 
 //Precondtion: none
@@ -95,7 +96,7 @@ void UserInterface::o_containerContains( string containerName, vector< string > 
 void UserInterface::o_listItems( vector< string > itemNames )
 {
   if( itemNames.empty() ){
-    cout << "Nothing";
+    cout << "Nothing" << endl;
   }
   else{
     int i = 0;
@@ -115,6 +116,26 @@ void UserInterface::o_listItems( vector< string > itemNames )
 //Postcondition: "This container is closed" will be output //to the console.
 void UserInterface::o_containerIsClosed()
 {
-  cout << "This container is closed";
+  cout << "This container is closed" << endl;
 }
 
+//Precondition: Item searched for could not be found
+//Postcondition: "Could not find item." printed to the console.
+void UserInterface::o_noItemFound()
+{
+  cout << "Could not find item." << endl;;
+}
+
+//Precondition: Player tries to exit the dungeon in a //room that does not have an exit.
+//Postcondition: "There is no exit here." is printed to //the console.
+void UserInterface::o_unableToLeave()
+{
+  cout << "There is no exit here." << endl;
+}
+
+//Precondition: Player kills creature
+//Postconditon: message printed to console
+void UserInterface::o_creaturedKilled()
+{
+  cout << "You mercilessly slaughtered the innocent creature" << endl;
+}
